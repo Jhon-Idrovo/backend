@@ -18,7 +18,7 @@ DATABASES = {
         'USER': str(os.getenv('USER')),
         'PASSWORD': str(os.getenv('PASSWORD')),
         'HOST': str(os.getenv('HOST')),
-                'TEST': {
+        'TEST': {
           'NAME': str(os.getenv('TEST')),
 
         }
