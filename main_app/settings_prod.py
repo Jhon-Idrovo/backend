@@ -5,7 +5,7 @@ load_dotenv()
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['your-home-finance-api.herokuapp.com']
+ALLOWED_HOSTS = ['your-home-finance-api.herokuapp.com', '']
 
 
 # STATICFILES_DIRS =[BASE_DIR/'react/dist', 
@@ -13,14 +13,16 @@ ALLOWED_HOSTS = ['your-home-finance-api.herokuapp.com']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+         'ENGINE': 'django.db.backends.mysql',
         'NAME': str(os.getenv('ENGINE')),
         'USER': str(os.getenv('USER')),
         'PASSWORD': str(os.getenv('PASSWORD')),
         'HOST': str(os.getenv('HOST')),
-        'PORT': str(os.getenv('PORT')),
-        'OPTIONS':{'isolation_level':None}
+                'TEST': {
+          'NAME': str(os.getenv('TEST')),
+
     }
+    
 }
 
 CORS_ALLOWED_ORIGINS = [

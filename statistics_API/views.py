@@ -44,10 +44,15 @@ class ExpenseStats(APIView):
                 i=i.replace(month=month+1)
                 
 
+        colors ={}
+        for exp_type in types:
+            colors[exp_type] = exp_type.color
+
         #Query the expenses
         series = []
         for exp_type in types:
-            values={'label':exp_type.expense_type, 'data':[]}
+    
+            values={'label':exp_type.expense_type, 'backgroundColor':exp_type.color, 'data':[]}
 
             for d in labels:
                 #calculate the sum of all expenses in the i month
@@ -64,9 +69,11 @@ class ExpenseStats(APIView):
                     sum['amount__sum']=0
                 #add the sum to the serie
                 values['data'].append(sum['amount__sum'])
+            #add the serie to the series list
             series.append(values)
-        data = {'series':series,'labels':labels}
+        data = {'datasets':series,'labels':labels}
         print(data)
         return Response(data,status=status.HTTP_200_OK)
 
     
+

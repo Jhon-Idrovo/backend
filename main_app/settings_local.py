@@ -1,7 +1,7 @@
 from .settings_base import *
 
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost:8000']
 STATICFILES_DIRS =[BASE_DIR/'react/dist']
 
 CORS_ALLOWED_ORIGINS = (

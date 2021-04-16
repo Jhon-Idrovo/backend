@@ -6,7 +6,7 @@ from rest_framework import status, generics
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 
 from .serializers import RegisterUserSerializer
 # Create your views here.
@@ -23,6 +23,7 @@ class BlacklistTokenView(APIView):
             token.blacklist()
             return Response(status=status.HTTP_202_ACCEPTED)
         except Exception as e:
+            print(e)
             return Response(status=status.HTTP_400_BAD_REQUEST)   
 
 
