@@ -8,7 +8,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['your-home-finance-api.herokuapp.com', 'JhonIdrovo.pythonanywhere.com.']
 
 
-# STATICFILES_DIRS =[BASE_DIR/'react/dist', 
+# STATICFILES_DIRS =[BASE_DIR/'react/dist',
 # '/var/www/static/',]
 
 DATABASES = {
@@ -22,7 +22,7 @@ DATABASES = {
           'NAME': str(os.getenv('TEST')),
 
     }
-    
+
 }
 
 CORS_ALLOWED_ORIGINS = [

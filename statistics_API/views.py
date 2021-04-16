@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .serializers import ExpenseSerializer, StatsSerializer, RegisterUserSerializer
-from expenses.models import Expense 
+from expenses.models import Expense
 # Create your views here.
 
 
@@ -37,12 +37,12 @@ class ExpenseStats(APIView):
             month = i.month
             year = i.year
             labels.append(str(year)+'-'+ str(month))
-            
+
             if month==12:
                 i=i.replace(year=year+1,month=1)
             else:
                 i=i.replace(month=month+1)
-                
+
 
         colors ={}
         for exp_type in types:
@@ -51,7 +51,7 @@ class ExpenseStats(APIView):
         #Query the expenses
         series = []
         for exp_type in types:
-    
+
             values={'label':exp_type.expense_type, 'backgroundColor':exp_type.color, 'data':[]}
 
             for d in labels:
@@ -73,7 +73,7 @@ class ExpenseStats(APIView):
             series.append(values)
         data = {'datasets':series,'labels':labels}
         print(data)
-        return Response(data,status=status.HTTP_200_OK)
+        return Response(data,status=status.HTTP_200_OK, headers={"Access-Control-Allow-Origin": "*"})
 
-    
+
 
