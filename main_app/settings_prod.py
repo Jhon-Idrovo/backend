@@ -21,8 +21,8 @@ DATABASES = {
                 'TEST': {
           'NAME': str(os.getenv('TEST')),
 
+        }
     }
-    
 }
 
 CORS_ALLOWED_ORIGINS = [
