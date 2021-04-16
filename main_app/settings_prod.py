@@ -5,7 +5,7 @@ load_dotenv()
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['your-home-finance-api.herokuapp.com', 'JhonIdrovo.']
+ALLOWED_HOSTS = ['your-home-finance-api.herokuapp.com', 'JhonIdrovo.pythonanywhere.com.']
 
 
 # STATICFILES_DIRS =[BASE_DIR/'react/dist', 
