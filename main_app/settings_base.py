@@ -164,6 +164,3 @@ SIMPLE_JWT = {
 }
 
 import mimetypes
-
-mimetypes.add_type("text/javascript", ".js", False)
-mimetypes.add_type("text/css", ".css", False)
