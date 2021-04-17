@@ -21,18 +21,21 @@ def generate_color(user):
         # colors = tuple(choice(levels) for _ in range(3))
         # rgb = sRGBColor(colors[0],colors[1], colors[2], is_upscaled=True)
         # print(colors,rgb)
-        
         colors = color('gist_ncar_r', randrange(0, 256,1), rgb_order=True)
         rgb = sRGBColor(colors[0],colors[1], colors[2], is_upscaled=True)
         #return rgb.get_rgb_hex()
         print(rgb)
+        #avoid infinite loop when there is no other types
+        if len(old_colors)<1:
+          return rgb.get_rgb_hex()
+
         new_color_lab = convert_color(rgb, LabColor)
 
         for old_color in old_colors:
             color_lab = convert_color(sRGBColor.new_from_rgb_hex(old_color), LabColor)
             delta= delta_e_cie2000(color_lab, new_color_lab)
 
-            print(delta)
+           
             if delta>50:
                 return rgb.get_rgb_hex()
 

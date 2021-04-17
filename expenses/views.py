@@ -13,6 +13,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from .serializers import ExpenseSerializer, DescriptionSerializer, TypeSerializer
 from .models import Expense,ExpenseDescription, ExpenseType
+from .models.ExpenseType import DoesNotExist
 from .utils import generate_color
 class CreateExpenses(APIView):
     permission_classes = [IsAuthenticated]
@@ -24,10 +25,11 @@ class CreateExpenses(APIView):
             #try to get the type, if it doesn't exist we create it 
             try: 
                 exp_type =ExpenseType.objects.get(expense_type=expense['expType'], user=user)
-            except:
+            except DoesNotExist:
                 #generate a unique color
                 color = generate_color(user)
                 exp_type=ExpenseType.objects.create(expense_type=expense['expType'], user=user, color=color)
+            #get the description or create it
             description,created = ExpenseDescription.objects.get_or_create(expense_type=exp_type,description=expense['description'],user=user)
             expense = Expense.objects.create(user= user, exp_type=exp_type, description= description, amount = expense['amount'], date=datetime.date.today())
         return Response(status=status.HTTP_201_CREATED)
