@@ -14,7 +14,7 @@ ALLOWED_HOSTS = ['your-home-finance-api.herokuapp.com', 'JhonIdrovo.pythonanywhe
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': str(os.getenv('ENGINE')),
+        'NAME': str(os.getenv('NAME')),
         'USER': str(os.getenv('USER')),
         'PASSWORD': str(os.getenv('PASSWORD')),
         'HOST': str(os.getenv('HOST')),
