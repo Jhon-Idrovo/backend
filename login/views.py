@@ -38,6 +38,7 @@ class CreateUser(APIView):
             reg_serializer.validated_data['password']=make_password(password)
             new_user = reg_serializer.save()
             if new_user:
+                print(f'New user {new_user} created')
                 return Response(status=status.HTTP_201_CREATED)
         return Response(reg_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
