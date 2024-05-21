@@ -14,7 +14,7 @@ ALLOWED_HOSTS = ['backend-1-410a8b404e22.herokuapp.com']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': str(os.getenv('ENGINE')),
+        'NAME': "znixzuonigw7gvo1",
         'USER': str(os.getenv('USER')),
         'PASSWORD': str(os.getenv('PASSWORD')),
         'HOST': str(os.getenv('HOST')),
