@@ -5,7 +5,7 @@ load_dotenv()
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['your-home-finance-api.herokuapp.com']
+ALLOWED_HOSTS = ['backend-1-410a8b404e22.herokuapp.com']
 
 
 # STATICFILES_DIRS =[BASE_DIR/'react/dist', 
