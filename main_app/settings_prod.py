@@ -24,7 +24,7 @@ DATABASES = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://your-home-finance.herokuapp.com", "https://expenses-manager-2-62216a16a8cf.herokuapp.com"
+    "https://expenses-manager-2-62216a16a8cf.herokuapp.com"
 ]
 
 
