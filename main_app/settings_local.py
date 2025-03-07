@@ -14,11 +14,11 @@ CORS_ALLOWED_ORIGINS = (
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysql',
-	    'USER': 'root',
-        'PASSWORD': 'abdoncalderon',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'hfdb',
+	    'USER': 'postgres',
+        'PASSWORD': 'adadfljadf',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '5432',
     }
 }

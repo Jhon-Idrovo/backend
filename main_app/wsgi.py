@@ -12,6 +12,6 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main_app.settings_prod')
-
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','main_app.settings_local' if os.environ.get('IS_DEV')=='TRUE' else 'main_app.settings_prod')
+print(os.environ.get('IS_DEV'))
 application = get_wsgi_application()

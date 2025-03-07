@@ -1,0 +1,20 @@
+services:
+  app:
+    container_name: django
+    volumes: 
+      - ./:/usr/local/app:rw
+    ports:
+      - 8000:8000
+    restart: always
+    environment:
+      - IS_DEV=TRUE
+    build:
+      context: ./
+    command: ["gunicorn", "main_app.wsgi","--log-file","-"]
+    develop:
+      watch:
+        - path: ./
+          action: rebuild
+          ignore:
+            - deploy/
+            - scripts/

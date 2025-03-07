@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:14.17-bookworm
+    volumes:
+      - home-finance-volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=adadfljadf
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=hfdb
+    ports:
+      - 5432:5432
+  adminer:
+    image: adminer
+    restart: always
+    attach: false
+    ports:
+      - 8080:8080
+volumes:
+  home-finance-volume:
