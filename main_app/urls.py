@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include,re_path
 from django.views.generic import TemplateView
+from main_app.backend_test_view import BackendTest
 #JWT
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('expenses.urls')),
@@ -32,6 +32,6 @@ urlpatterns = [
     #JWT
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-
+    path('api/test/', BackendTest.as_view(), name='backend_test')
     #re_path('.*', TemplateView.as_view(template_name='index.html'))
 ]

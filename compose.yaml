@@ -1,16 +1,34 @@
 services:
-  app:
+  db:
+    attach: false
+    image: postgres:14.17-bookworm
+    volumes:
+      - home-finance-volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=adadfljadf
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=hfdb
+    # networks:
+    #   - backend
+    ports:
+      - "5432:5432"
+  adminer:
+    image: adminer
+    restart: always
+    attach: false
+    ports:
+      - "8080:8080"
+    # networks:
+    #   - backend
+  backend-app:
     container_name: django
     volumes: 
       - ./:/usr/local/app:rw
-    ports:
-      - 8000:8000
-    restart: always
+    restart: on-failure:2
     environment:
       - IS_DEV=TRUE
-    build:
-      context: ./
-    command: ["gunicorn", "main_app.wsgi","--log-file","-"]
+    build: ./
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
     develop:
       watch:
         - path: ./
@@ -18,3 +36,13 @@ services:
           ignore:
             - deploy/
             - scripts/
+    # networks:
+    #   - backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+volumes:
+  home-finance-volume:
+# networks:
+#   backend:

@@ -1,22 +1,28 @@
-FROM python:3.9.2
+FROM python:3.9.2-slim
+
+RUN echo "Building backend image"
 
 WORKDIR /usr/local/app
 
-# Copy source code
-COPY ./ ./
+# We copy the requirements first to avoid invalidating the cached packages
+COPY ./requirements.txt /usr/local/app/
+RUN pip install -r requirements.txt
 
-# Install the application's dependencies 
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy the rest of the source code
+COPY ./ ./
+ 
 
 EXPOSE 8000
-ENV IS_DEV "TRUE"
-ENV PYTHONUNBUFFERED 1
+
+ENV IS_DEV="TRUE"
+
+# Used to enable logs
+ENV PYTHONUNBUFFERED=1
+
 # Setup an app user so the container doesn't run as the root user
 RUN useradd app
 USER app
 
-# To run this, the database needs to be online
 # RUN python manage.py migrate
-# CMD [ "python", "manage.py", "migrate" ]
-# CMD [ "python", "manage.py", "runserver" ]
-# CMD ["gunicorn","main_app.wsgi","--log-file","-"]
+# To run this, the database needs to be online
+CMD [ "python", "manage.py", "migrate" ]
